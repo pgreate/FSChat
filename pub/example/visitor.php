@@ -10,6 +10,7 @@ require('../../inc/config.php');
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="assets/bootstrap.min.css">
     <link rel="stylesheet" href="assets/styles.css">
     <script src="assets/js.cookie.min.js"></script>
     <script src="assets/autobahn.js"></script>
@@ -41,7 +42,8 @@ require('../../inc/config.php');
                method:'POST',
                body: window.chat_message.value,
            }).then((r) => r.json()).then((data) => {
-               console.log(data);
+               //console.log(data);
+               window.chat_message.value = '';
            });
 
            return false;
@@ -62,7 +64,7 @@ require('../../inc/config.php');
                     con.subscribe(chat_id, function(topic, data) {
                         //console.log(data);
                         window.chat_history.innerHTML += renderMessage(data);
-                        window.chat_message.value = '';
+                        //window.chat_message.value = '';
                     });
                 },
                 function () {

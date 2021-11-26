@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: Admin
- * Date: 23.11.2021
- * Time: 23:55
+ * Date: 24.11.2021
+ * Time: 20:42
  */
 
 namespace FSChat\Api\Router;
@@ -14,30 +14,33 @@ use MongoDB\Collection;
 use ZMQ;
 use ZMQContext;
 
-class ChatRouter implements RouterInterface
+class ChatManagerRouter implements RouterInterface
 {
-
-    /**
-     * ChatRouter constructor.
-     */
-    public function __construct()
-    {
-
-    }
 
     public function dispatch($arguments)
     {
-
         //Handle auth request
         if(empty($arguments[0])){
             session_start();
             return session_id();
         }
+
         /**
          * @var Collection $collection
          */
         $collection = ServiceProvider::get('db')->messages;
 
+        if($arguments[0] == 'list'){
+//            var_dump($arguments);exit;
+            $result = $collection->aggregate([
+                ['$group'=>[
+                    '_id'=>'$sid',
+                    'totalMessages'=>['$sum'=>1],
+                ]],
+
+            ]);
+            return $result->toArray();
+        }
 
         //Handle messages history request
         if($_SERVER['REQUEST_METHOD'] == 'GET'){
@@ -45,13 +48,13 @@ class ChatRouter implements RouterInterface
             $result = $collection->find(['sid'=>$arguments[0]]);
             return $result->toArray();
 
-        //Handle send message request
+            //Handle send message request
         }elseif($_SERVER['REQUEST_METHOD'] == 'POST'){
 
             $new_message = [
                 'sid' => $arguments[0],
                 'text' => file_get_contents('php://input'),
-                'manager' => 0,
+                'manager' => 1,
             ];
             $result = $collection->insertOne($new_message);
 
@@ -72,6 +75,5 @@ class ChatRouter implements RouterInterface
         }
 
         return false;
-
     }
 }
