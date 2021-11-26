@@ -1,3 +1,5 @@
 vendor
 .idea
 inc/config.php
+desktop/node_modules
+desktop/out

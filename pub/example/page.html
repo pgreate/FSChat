@@ -96,25 +96,17 @@
 
     </footer>
 </div>
-<script>
-    (function(d,u){
-
-        let widget_holder = d.createElement('div');
-        widget_holder.classList.add('fsc_widget');
-
-        let widget_iframe = d.createElement('iframe');
-        widget_iframe.src = u+'visitor.php';
-
-        widget_holder.append(widget_iframe);
-        d.body.append(widget_holder);
-
-        let widget_style = d.createElement('link');
-        widget_style.rel = "stylesheet";
-        widget_style.href = u+'assets/widget_connector.css';
-        d.head.append(widget_style);
-
-    })(document,'/h/fsc/pub/example/');
-
-</script>
+    <!-- FSC Widget -->
+    <script>
+        (function(d,u){
+            let widget_connector = d.createElement('script');
+            widget_connector.src = u+'assets/widget_connector.js';
+            d.body.append(widget_connector);
+            widget_connector.onload = function(){
+                fsc_widget_connect(d,u);
+            }
+        })(document,'/h/fsc/pub/widget/');
+    </script>
+    <!-- //FSC Widget -->
 </body>
 </html>

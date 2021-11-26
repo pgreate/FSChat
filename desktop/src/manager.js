@@ -77,6 +77,8 @@ function selectChat(id){
                 if(elem.classList.contains('active')) elem.classList.remove('active');
             }
         }
+		
+		window.chat_history.scrollTop = window.chat_history.scrollHeight;
 
     });
 

@@ -8,13 +8,13 @@
 require('../../inc/config.php');
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <link rel="stylesheet" href="assets/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/styles.css">
+        <link rel="stylesheet" href="../example/assets/bootstrap.min.css">
+        <link rel="stylesheet" href="../webmanager/assets/styles.css">
         <link rel="stylesheet" href="assets/widget.css">
-        <script src="assets/js.cookie.min.js"></script>
-        <script src="assets/autobahn.js"></script>
+        <script src="../webmanager/assets/js.cookie.min.js"></script>
+        <script src="../webmanager/assets/autobahn.js"></script>
     </head>
     <body>
         <div class="container" id="app">
@@ -32,8 +32,9 @@ require('../../inc/config.php');
         <script>
             const pub_prefix = '/h/fsc/pub';
             const ws_addr = 'ws://'+'<?=BROKER_URL?>';
+            const chat_channel_prefix = '<?=CHAT_CHANNEL_PREFIX?>';
             const sid = Cookies.get('PHPSESSID');
         </script>
-        <script src="assets/widget.js"></script>
+        <script src="../widget/assets/widget.js"></script>
     </body>
 </html>

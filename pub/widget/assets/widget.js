@@ -10,16 +10,12 @@ function renderMessage(msg){
 document.addEventListener("DOMContentLoaded",function(){
     window.chat_send.addEventListener("click",function(){
 
-        console.log("SEND");
-
-
-
         fetch(pub_prefix+'/api/'+'chat/'+sid,{
             method:'POST',
             body: window.chat_message.value,
         }).then((r) => r.json()).then((data) => {
-            //console.log(data);
             window.chat_message.value = '';
+            window.chat_history.scrollTop = window.chat_history.scrollHeight;
         });
 
         return false;
@@ -31,9 +27,10 @@ document.addEventListener("DOMContentLoaded",function(){
             d.data.forEach((msg) => {
                 window.chat_history.innerHTML += renderMessage(msg);
             });
+            window.chat_history.scrollTop = window.chat_history.scrollHeight;
         }
 
-        let chat_id = '<?=CHAT_CHANNEL_PREFIX?>'+'_'+sid;
+        let chat_id = chat_channel_prefix+'_'+sid;
 
         con = new ab.Session(ws_addr,
             function () {

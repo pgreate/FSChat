@@ -8,12 +8,13 @@
 require('../../inc/config.php');
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="assets/bootstrap.min.css">
+	<link rel="stylesheet" href="../example/assets/bootstrap.min.css">
     <link rel="stylesheet" href="assets/styles.css">
 	<!--<script src="assets/bootstrap.min.js"></script>-->
     <script src="assets/autobahn.js"></script>
+    <title>FSC WebManager</title>
 </head>
 <body>
     <div class="container" id="app">
