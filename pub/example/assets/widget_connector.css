@@ -1,0 +1,16 @@
+.fsc_widget{
+    position:fixed;
+    right:0;
+    bottom:0;
+    width:460px;
+    height:400px;
+}
+.fsc_widget iframe{
+    width:100%;
+    height:100%;
+    border: 1px solid #F0F0F0;
+    border-radius: 10px;
+}
+.fsc_widget_header{
+
+}
